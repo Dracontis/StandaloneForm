@@ -107,7 +107,6 @@
     </Compile>
     <Compile Include="ExcelFunctions.cs" />
     <Compile Include="ExcelFunc.cs" />
-    <Compile Include="ExcelLib.cs" />
     <Compile Include="Faculty.xaml.cs">
       <DependentUpon>Faculty.xaml</DependentUpon>
     </Compile>

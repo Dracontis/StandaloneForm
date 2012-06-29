@@ -278,10 +278,20 @@ namespace StandaloneForm
 
             try
             {
-                if (ExcelForm != null) ExcelForm.Dispose();
-                if (ExcelSummary != null) ExcelSummary.Dispose();
+                ExcelForm.CloseDocument();
+                ExcelForm.Dispose();
             }
-            catch (COMException Excep)
+            catch 
+            {
+                // Тут нет костыля. Совсем. Иди отсюда мальчик. Или девочка. В общем, вали быстро!
+                // It's a lion! Get in the car!
+            }
+            try
+            {
+                ExcelSummary.CloseDocument();
+                ExcelForm.Dispose();
+            }
+            catch
             {
                 // Тут нет костыля. Совсем. Иди отсюда мальчик. Или девочка. В общем, вали быстро!
                 // It's a lion! Get in the car!
@@ -572,11 +582,16 @@ namespace StandaloneForm
             int Pos = 13;
             while (true)
             {
+                string value;
                 try
                 {
-                    ExcelSummary.GetValue("B" + Pos.ToString());
+                    value = ExcelSummary.GetValue("B" + Pos.ToString());
                 }
                 catch (NullReferenceException nre)
+                {
+                    value = null;
+                }
+                if(value == null)
                 {
                     ExcelSummary.SetValue("B" + Pos.ToString(), NewApplicant.SecondName + " " + NewApplicant.FirstName + " " + NewApplicant.LastName);
                     ExcelSummary.SetValue("C" + Pos.ToString(), NewApplicant.Sex); //cause there are no sex in our program! //oh shi~, now there are some sex in our program...

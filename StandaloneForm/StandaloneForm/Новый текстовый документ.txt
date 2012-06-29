@@ -1,0 +1,98 @@
+private void GenerateDocuments(object sender, RoutedEventArgs e)
+        {
+            Address Addr = new Address();
+            Addr.Index = ControlIndex.Text;
+            Addr.Region = ControlRegion.Text;
+            Addr.Town = ControlTown.Text;
+            Addr.AppAddress = ControlAddress.Text;
+            List<Specialization> LSpecs = new List<Specialization>();
+            if (ControlFirstPriority.SelectedIndex != -1) LSpecs.Add( new Specialization(ControlFirstPriority.SelectedItem.ToString()));
+            if (ControlSecondPriority.SelectedIndex != -1) LSpecs.Add( new Specialization(ControlSecondPriority.SelectedItem.ToString()));
+            if (ControlThirdPriority.SelectedIndex != -1) LSpecs.Add( new Specialization(ControlThirdPriority.SelectedItem.ToString()));
+            List<EnteranceExamination> LExams = new List<EnteranceExamination>();
+            EnteranceExamination Exam = new EnteranceExamination();
+            if (ControlSubject1.SelectedIndex != -1) Exam.Subject = ControlSubject1.SelectedItem.ToString();
+            Exam.Points = ControlPoints1.Text;
+            if (ControlEge1.IsChecked == true) {
+                Exam.Ege = true;
+                Exam.Olimp = false;
+            }
+            if (ControlOlimp1.IsChecked == true) {
+                Exam.Ege = false;
+                Exam.Olimp = true;
+            }
+            Exam.TitleAndNum = ControlTitleAndNum1.Text.ToString();
+            Exam.DocumentIssuedDate = ControlDocumentIssuedDate1.Text.ToString();
+            LExams.Add(Exam);
+            if (ControlSubject2.SelectedIndex != -1) Exam.Subject = ControlSubject2.SelectedItem.ToString();
+            Exam.Points = ControlPoints2.Text;
+            if (ControlEge2.IsChecked == true) {
+                Exam.Ege = true;
+                Exam.Olimp = false;
+            }
+            if (ControlOlimp2.IsChecked == true) {
+                Exam.Ege = false;
+                Exam.Olimp = true;
+            }
+            Exam.TitleAndNum = ControlTitleAndNum2.Text;
+            Exam.DocumentIssuedDate = ControlDocumentIssuedDate2.Text;
+            LExams.Add(Exam);
+            if (ControlSubject3.SelectedIndex != -1) Exam.Subject = ControlSubject3.SelectedItem.ToString();
+            Exam.Points = ControlPoints3.Text;
+            if (ControlEge3.IsChecked == true) {
+                Exam.Ege = true;
+                Exam.Olimp = false;
+            }
+            if (ControlOlimp3.IsChecked == true) {
+                Exam.Ege = false;
+                Exam.Olimp = true;
+            }
+            Exam.TitleAndNum = ControlTitleAndNum3.Text;
+            Exam.DocumentIssuedDate = ControlDocumentIssuedDate3.Text;
+            LExams.Add(Exam);
+            EnterRegistrationNumber ERN = new EnterRegistrationNumber();
+            ERN.ShowDialog();
+            String RN = ERN.RegNumber;
+            if (RN != "")
+            {
+                //OMFG begins
+                Applicant NewApplicant = new Applicant(
+                    RN, 
+                    ControlFirstName.Text,
+                    ControlSecondName.Text, 
+                    ControlLastName.Text, 
+                    ControlBirthDate.Text, 
+                    ControlBirthPlace.Text,
+                    Addr,
+                    ControlCitizenship.Text,
+                    ControlPassport.Text,
+                    ControlSerial.Text,
+                    ControlNumber.Text,
+                    ControlPassportIssuedDate.Text,
+                    ControlHomePhone.Text,
+                    ControlLearningForm.Text,
+                    ControlFunding.Text,
+                    LSpecs.ToArray(),
+                    ControlEducation.Text,
+                    ControlTypeOfEducationDocument.Text,
+                    ControlNumberOfEducationDocument.Text,
+                    ControlEducationIssuedDate.Text,
+                    LExams.ToArray(),
+                    Convert.ToBoolean(ControlAllowUniversityExams.IsChecked),
+                    ControlGrounds.Text,
+                    ControlFacilities.Text,
+                    null,
+                    Convert.ToBoolean(ControlNeedDorm.IsChecked),
+                    ControlIssuedUniversityEducation.Text
+                    );    
+                //OMFG ends
+                File.Copy(ProgramPath + @"Templates\MainFormTemplate.xlsx", ProgramPath + @"Documents\Анкета " + ControlSecondName.Text + " " + RN + ".xlsx");
+                ExcelFunctions ExcelForm = new ExcelFunctions();
+                ExcelForm.OpenDocument(ProgramPath + @"Documents\Анкета " + ControlSecondName.Text + " " + RN + ".xlsx");
+                ExcelForm.SetValue("C3", RN);
+                ExcelForm.SetValue("C4", RN);
+                ExcelForm.SetValue("C5", RN);
+                ExcelForm.SetValue("C6", RN);
+                ExcelForm.CloseDocument();
+            }
+        }

@@ -1,0 +1,11 @@
+﻿<Window x:Class="StandaloneForm.EnterRegistrationNumber"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Регистрационный номер абитуриента" Height="207" Width="400" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Пожалуйста, введите регистрационный номер абитуриента" HorizontalAlignment="Left" Margin="12,12,0,101" Name="label1" />
+        <TextBox Height="23" HorizontalAlignment="Center" Name="textBox1" VerticalAlignment="Center" Width="216" Margin="81,56,81,88" KeyDown="textBox1_KeyDown" />
+        <Button Content="OK" Height="23" HorizontalAlignment="Center" Name="button1" VerticalAlignment="Bottom" Width="75" Click="button1_Click" Margin="0,0,0,16" />
+        <Label Content="X-XXX-XXX" Height="28" HorizontalAlignment="Center" Name="label2" VerticalAlignment="Top" Margin="156,86,152,0" HorizontalContentAlignment="Center" Foreground="#FF666666" />
+    </Grid>
+</Window>

@@ -1,0 +1,35 @@
+﻿<Window x:Class="StandaloneForm.Faculty"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Выберите кафедру" ResizeMode="NoResize" Name="FacultyWindow" Padding="0,0,0,5" Loaded="FacultyWindow_Loaded" Height="Auto" MinHeight="400">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="2 5 2 5" />
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Grid Name="ListOfFaculties">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10" VerticalAlignment="Bottom">
+            <Button Content="ОК" Width="50" Height="25" HorizontalAlignment="Right" Click="ButtonOk_Click" />
+            <Button Content="Сбросить" Width="75" Height="25" HorizontalAlignment="Right" Click="ButtonReset_Click" />
+            <Button Content="Отмена" Width="50" Height="25" HorizontalAlignment="Right" Click="ButtonCancel_Click" />
+        </WrapPanel>
+    </StackPanel>
+</Window>
